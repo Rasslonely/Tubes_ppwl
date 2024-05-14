@@ -169,6 +169,7 @@ p {
   transition: all .3s;
   position: relative;
   overflow: hidden;
+  margin-top: -15px;
 }
 
 .main-button a:hover {
