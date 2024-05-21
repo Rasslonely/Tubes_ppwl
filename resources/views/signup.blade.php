@@ -66,7 +66,7 @@
                           </div>
                           <div class="form-group">
                             <div class="col-md-12">
-                              <div class="control-wrapper">
+                              <div class="">
                                 <label for="password" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
                                 <input type="password" class="form-control" id="password" placeholder="Password">
                               </div>

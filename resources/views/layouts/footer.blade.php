@@ -19,3 +19,6 @@
 <script src="assets/js/tabs.js"></script>
 <script src="assets/js/popup.js"></script>
 <script src="assets/js/custom.js"></script>
+
+{{-- Navbar JavaScript --}}
+<script src="assets/js/navbar.js"></script>
