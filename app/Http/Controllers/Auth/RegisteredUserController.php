@@ -33,9 +33,9 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'username' =>['required', 'min:3', 'max:255', 'unique:users'],
-            'email' => ['required', 'string', 'lowercase', 'email:dns', 'max:255', 'unique:'.User::class],
-            'password' => 'required|min:5|max:225'
+            'username' => ['required', 'min:3', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'lowercase', 'email:dns', 'max:255', 'unique:' . User::class],
+            'password' => 'required|min:8|max:225'
         ]);
 
         $user = User::create([
@@ -49,6 +49,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('home', absolute: false));
+        return to_route('home');
     }
 }

@@ -17,5 +17,10 @@ export default {
         },
     },
 
-    plugins: [forms],
+    plugins: [require('daisyui'), forms],
+
+    //Apabila warna background tampilan web menjadi hitam, tambahkan kode berikut
+    daisyui: {
+        themes: ['light']
+    }
 };

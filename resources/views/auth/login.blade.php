@@ -40,13 +40,16 @@
                                                     <div class="form-group">
                                                         <div class="col-xs-12">
                                                             <div class="control-wrapper">
-                                                                <label for="email" class="control-label fa-label"><i
+                                                                <label for="text" class="control-label fa-label"><i
                                                                         class="fa fa-user fa-medium"></i></label>
-                                                                <input type="text" name="email"
-                                                                    class="form-control @error('email') is-invalid @enderror"
-                                                                    id="email" placeholder="email" required autofocus
-                                                                    value="{{ old('email') }}">
-                                                                @error('email')
+                                                                <input type="text" name="username"
+                                                                    class="form-control @error('username') is-invalid @enderror"
+                                                                    id="username" placeholder="username/email"
+                                                                    @if (Cookie::has('username')) value="{{ Cookie::get('username') }}" @endif
+                                                                    required autofocus>
+
+
+                                                                @error('username')
                                                                     <div class="invalid-feedback">
                                                                         {{ $message }}
                                                                     </div>
@@ -60,8 +63,9 @@
                                                                 <label for="password" class="control-label fa-label"><i
                                                                         class="fa fa-lock fa-medium"></i></label>
                                                                 <input type="password" name="password" class="form-control"
-                                                                    id="password" placeholder="Password" required
-                                                                    autofocus>
+                                                                    id="password" placeholder="Password"
+                                                                    @if (Cookie::has('password')) value="{{ Cookie::get('password') }}" @endif
+                                                                    required autofocus>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -71,7 +75,8 @@
                                                         <label for="remember_me" class="d-flex align-items-baseline">
                                                             <input id="remember_me" type="checkbox"
                                                                 class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800"
-                                                                name="remember">
+                                                                name="remember"
+                                                                @if (Cookie::has('username')) checked @endif>
                                                             <i
                                                                 class="ms-2 text-sm text-white dark:text-gray-400">{{ __('Remember me') }}</i>
                                                         </label>

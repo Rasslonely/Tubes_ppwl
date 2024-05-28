@@ -13,9 +13,6 @@
                                 <div class="header-text">
                                     <h6>Welcome To Cyborg</h6>
                                     <h4><em>Browse</em> Our Popular Games Here</h4>
-                                    <div class="main-button">
-                                        <a href="browse.html">Browse Now</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -31,66 +28,42 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-sm-6">
-                                      <a href="/order">
+                                      <a href="/order/Robert King">
                                       <div class="item">
                                                 <img src="assets/images/popular-01.jpg" alt="">
-                                                <h4>Fortnite<br><span>Sandbox</span></h4>
+                                                <h4>Robert King<br><span>Legendary</span></h4>
                                               </div>
                                             </a>
                                     </div>
                                     <div class="col-lg-3 col-sm-6">
-                                        <a href="/order">
+                                        <a href="/order/Nayla Cooking">
                                             <div class="item">
                                                 <img src="assets/images/popular-02.jpg" alt="">
-                                                <h4>PubG<br><span>Battle S</span></h4>
+                                                <h4>Nayla Cooking<br><span>Life Sim</span></h4>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="col-lg-3 col-sm-6">
-                                        <a href="/order">
+                                        <a href="/order/Rass Simulator">
                                             <div class="item">
                                                 <img src="assets/images/popular-03.jpg" alt="">
-                                                <h4>Dota2<br><span>Steam-X</span></h4>
+                                                <h4>Rass Simulator<br><span>Simulation</span></h4>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="col-lg-3 col-sm-6">
-                                        <a href="/order">
+                                        <a href="/order/Timo Racing">
                                             <div class="item">
                                                 <img src="assets/images/popular-04.jpg" alt="">
-                                                <h4>CS-GO<br><span>Legendary</span></h4>
+                                                <h4>Timo Racing<br><span>Racing</span></h4>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="col-lg-3 col-sm-6">
-                                        <a href="/order">
+                                        <a href="/order/Rayza World">
                                             <div class="item">
                                                 <img src="assets/images/popular-05.jpg" alt="">
-                                                <h4>Mini Craft<br><span>Legendary</span></h4>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-sm-6">
-                                        <a href="/order">
-                                            <div class="item">
-                                                <img src="assets/images/popular-06.jpg" alt="">
-                                                <h4>Eagles Fly<br><span>Matrix Games</span></h4>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-sm-6">
-                                        <a href="/order">
-                                            <div class="item">
-                                                <img src="assets/images/popular-07.jpg" alt="">
-                                                <h4>Warface<br><span>Max 3D</span></h4>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-sm-6">
-                                        <a href="/order">
-                                            <div class="item">
-                                                <img src="assets/images/popular-08.jpg" alt="">
-                                                <h4>Warcraft<br><span>Legend</span></h4>
+                                                <h4>Rayza World<br><span>Sandbox</span></h4>
                                             </div>
                                         </a>
                                     </div>

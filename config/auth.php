@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        // 'admin' => [
+        //     'driver' => 'session',
+        //     'provider' => 'admins', // Ganti 'admins' dengan nama provider yang sesuai untuk pengguna admin Anda
+        // ],
     ],
 
     /*

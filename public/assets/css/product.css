@@ -1,0 +1,208 @@
+html{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+
+/* HOME PRODUCT START */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px 8px 0 0;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header .btn {
+    background-color: white;
+    color: #007bff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.header .btn:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.alert {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 15px 0 15px 0;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.btn-group {
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 12px;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.text-center {
+    text-align: center;
+}
+/* HOME PRODUCT END */
+
+
+/* CREATE PRODUCT START */
+.create-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.create{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.create h1{
+    font-size: larger;
+    font-weight: 500;
+    font-style: italic;
+    margin: 10px;
+}
+
+.input-container{
+    margin: 10px;
+}
+
+.input-container input, select{
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid;
+}
+
+.button{
+    border-radius: 10px;
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+    margin-top: 10px;
+}
+.button a{
+    border-radius: 10px;
+    background-color: aqua;
+    position: static;
+    padding: 10px 30px 10px 30px;
+    transition: 0.2s ease-in-out;
+}
+
+.button a:hover{
+    background-color: rgb(59, 213, 213);
+}
+
+.button-add{
+    border-radius: 10px;
+    padding: 10px; 
+    text-align: center;
+    margin: 10px;
+}
+
+.button-add button{
+    border-radius: 10px;
+    background-color: aqua;
+    position: static;
+    padding: 10px 30px 10px 30px;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.button-add button:hover{
+    background-color: rgb(59, 213, 213);
+}
+
+/* CREATE PRODUCT END */
