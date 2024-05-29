@@ -23,7 +23,10 @@
                     <div class="button">
                         <a href="{{ Route('admin.product.home') }}">Back</a>
                     </div>
-                    <form action="{{ route('admin.product.update', $products->id) }}" method="POST">
+
+                    {{-- Menyimpan data product edit ke route admin.product.update yang nantinya akan di redirect --}}
+                    <form action="{{ route('admin.product.update', $products->id
+                    ) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="input-container">

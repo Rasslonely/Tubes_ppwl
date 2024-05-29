@@ -78,7 +78,7 @@ class OrderController extends Controller
             'username' => 'required|string|max:255',
         ]);
 
-        // Verifikasi username dan user_id
+        // Verifikasi username dengan value yang ada di database user
         $user = User::where('username', $request->username)->first();
 
         if (!$user) {
@@ -121,11 +121,11 @@ class OrderController extends Controller
     public function totalOrder()
     {
         $orders = Order::latest()->take(5)->get();
-        $totalOrders = Order::count();
-        $totalVisitors = Visitor::count();
-        $totalSales = Order::sum('total_price');
+        $totalOrders = Order::count(); // Jumlah total pesanan
+        $totalVisitors = Visitor::count(); // Masi error gosa di masukkan
+        $totalSales = Order::sum('total_price'); // Jumlah Total Pemasukan
         $tasks = Task::all(); // Misalnya, Anda juga menampilkan ToDoList di dashboard
-        $recentOrders = Order::latest()->limit(5)->get();
+        $recentOrders = Order::latest()->limit(5)->get(); // Masi error gosa di masukkan
 
         return view('admin.dashboard', compact('orders', 'totalOrders', 'totalVisitors', 'totalSales', 'tasks', 'recentOrders'), [
             'title' => 'Dashboard',

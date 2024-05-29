@@ -4,6 +4,7 @@
     <section id="content">
         <!-- MAIN -->
         <main>
+            <!-- TITLE-->
             <div class="head-title">
                 <div class="left">
                     <h1>Dashboard</h1>
@@ -19,10 +20,12 @@
                 </div>
             </div>
 
+            <!-- CONTENT DASHBOARD -->
             <ul class="box-info">
                 <li>
                     <i class='bx bxs-calendar-check'></i>
                     <span class="text">
+                        <!-- Data diambil dari database dengan pihak tengah OrderController-->
                         <h3>{{ $totalOrders }}</h3>
                             <p>Total Order</p>
                     </span>

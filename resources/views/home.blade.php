@@ -24,34 +24,34 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="heading-section">
-                                    <h4><em>Most Popular</em> Right Now</h4>
+                                    <h4><em>Available</em> Cool Games</h4>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-3 col-sm-6">
-                                      <a href="/order/Robert King">
-                                      <div class="item">
-                                                <img src="assets/images/popular-01.jpg" alt="">
-                                                <h4>Robert King<br><span>Legendary</span></h4>
-                                              </div>
-                                            </a>
-                                    </div>
-                                    <div class="col-lg-3 col-sm-6">
+                                    <div class="col-lg-4 col-sm-6">
                                         <a href="/order/Nayla Cooking">
                                             <div class="item">
-                                                <img src="assets/images/popular-02.jpg" alt="">
+                                                <img src="assets/images/naylacooking.png" alt="">
                                                 <h4>Nayla Cooking<br><span>Life Sim</span></h4>
                                             </div>
                                         </a>
                                     </div>
-                                    <div class="col-lg-3 col-sm-6">
+                                    <div class="col-lg-4 col-sm-6">
                                         <a href="/order/Rass Simulator">
                                             <div class="item">
-                                                <img src="assets/images/popular-03.jpg" alt="">
-                                                <h4>Rass Simulator<br><span>Simulation</span></h4>
+                                                <img src="assets/images/farasland.png" alt="">
+                                                <h4>Farras Land<br><span>Simulation</span></h4>
                                             </div>
                                         </a>
                                     </div>
-                                    <div class="col-lg-3 col-sm-6">
+                                    <div class="col-lg-4 col-sm-6">
+                                        <a href="/order/Rayza World">
+                                            <div class="item">
+                                                <img src="assets/images/rayzacare.png" alt="">
+                                                <h4>Rayza Care<br><span>Life Sim</span></h4>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
                                         <a href="/order/Timo Racing">
                                             <div class="item">
                                                 <img src="assets/images/popular-04.jpg" alt="">
@@ -59,14 +59,14 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <div class="col-lg-3 col-sm-6">
-                                        <a href="/order/Rayza World">
-                                            <div class="item">
-                                                <img src="assets/images/popular-05.jpg" alt="">
-                                                <h4>Rayza World<br><span>Sandbox</span></h4>
-                                            </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <a href="/order/Robert King">
+                                        <div class="item">
+                                                  <img src="assets/images/popular-01.jpg" alt="">
+                                                  <h4>Robert King<br><span>Legendary</span></h4>
+                                                </div>
                                         </a>
-                                    </div>
+                                      </div>
                                 </div>
                             </div>
                         </div>
