@@ -7,9 +7,14 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::orderBy('id', 'desc')->get();
+        if ($request->has('search')) {
+            $products = Product::search($request->search)->orderBy('id')->get();
+        } else {
+            $products = Product::all();
+            $products = Product::orderBy('id')->get();
+        }
         $total = Product::count();
         return view('admin.product.home', compact(['products', 'total']), [
             "title" => "Product",
@@ -49,7 +54,8 @@ class ProductController extends Controller
         ]);
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $products = Product::findOrFail($id)->delete();
         if ($products) {
             session()->flash('success', 'Product Delete Successfully');

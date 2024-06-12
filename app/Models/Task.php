@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Task extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $table = 'tasks';
     protected $primaryKey = 'id';
@@ -18,4 +19,14 @@ class Task extends Model
         'task',
         'completed'
     ];
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'tanggal' => $this->tanggal,
+            'task' => $this->task,
+            'completed' => $this->completed,
+        ];
+    }
 }

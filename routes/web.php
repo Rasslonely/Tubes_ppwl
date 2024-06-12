@@ -6,6 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostingController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ToDoListController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
@@ -25,7 +26,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
     Route::get('/orderConfirmation', [OrderController::class, 'confirmation'])->name('orderConfirmation');
     Route::get('/orderHistory', [OrderController::class, 'orderHistory'])->name('order.orderHistory');
-
 });
 
 // Route::get('/', [PostingController::class, 'utama']);
@@ -48,15 +48,25 @@ Route::middleware(['auth', 'verified', 'adminMiddleware'])->group(function () {
     Route::get('/admin/product/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
     Route::put('/admin/product/edit/{id}', [ProductController::class, 'update'])->name('admin.product.update');
     Route::get('/admin/product/delete/{id}', [ProductController::class, 'delete'])->name('admin.product.delete');
-
+    
     // TO DO LIST ROUTE
     Route::get('/admin/dashboard', [ToDoListController::class, 'index'])->name('admin.dashboard');
     Route::post('/admin/tasks', [ToDoListController::class, 'store'])->name('tasks.store');
     Route::get('/admin/tasks/{id}', [ToDoListController::class, 'showTask'])->name('tasks.show');
     Route::delete('/admin/tasks/{id}', [ToDoListController::class, 'deleteTask'])->name('tasks.delete');
-
-    // USER NOTIF ROUTES
+    
+    // NOTIF ROUTES
     Route::get('/admin/dashboard', [OrderController::class, 'totalOrder'])->name('admin.dashboard');
-});
+    
+    // CATEGORY ROUTES
+    Route::get('/admin/category/home', [CategoryController::class, 'index'])->name('admin.category.home');
+    Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+    Route::post('/admin/category/save', [CategoryController::class, 'save'])->name('admin.category.save');
+    Route::get('/admin/category/delete/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
+    });
 
-require __DIR__ . '/auth.php';
+    // USER ROUTES
+    Route::get('/admin/user/home', [AdminController::class, 'user'])->name('admin.user.home');
+    
+    require __DIR__ . '/auth.php';
+    

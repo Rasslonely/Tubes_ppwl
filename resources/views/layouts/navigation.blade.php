@@ -18,14 +18,14 @@
                     <span class="text">Product</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li class="{{ request()->routeIs('admin.category.home') ? 'active' : '' }}">
+                <a href="/admin/category/home">
                     <i class='bx bi bi-collection-fill'></i>
                     <span class="text">Category</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li class="{{ request()->routeIs('admin.user.home') ? 'active' : '' }}">
+                <a href="/admin/user/home">
                     <i class='bx bi-emoji-sunglasses-fill'></i>
                     <span class="text">User</span>
                 </a>
@@ -57,11 +57,10 @@
     <!-- NAVBAR -->
     <nav>
         <i class='bx bx-menu'></i>
-        <a href="#" class="nav-link">Categories</a>
-        <form action="#">
+        <form action="" method="GET">
             <div class="form-input">
-                <input type="search" placeholder="Search...">
-                <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                <input type="search" placeholder="Search..." name="search">
+                <button type="submit" class="search-btn" value="search"><i class='bx bx-search'></i></button>
             </div>
         </form>
         <input type="checkbox" id="switch-mode" hidden>

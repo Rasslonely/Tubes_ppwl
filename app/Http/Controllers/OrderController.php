@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\User;
 use App\Models\Task;
-use App\Models\Visitor;
 use App\Models\Product;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -71,35 +70,30 @@ class OrderController extends Controller
     {
         // Validasi input dari form
         $request->validate([
-            'user_id' => 'required|string|max:255',
+            'game_id' => 'required|string|max:255',
             'quantity' => 'required|integer|min:1',
             'payment_method' => 'required|string|max:255',
             'product_id' => 'required|integer|exists:products,id',
-            'username' => 'required|string|max:255',
         ]);
 
-        // Verifikasi username dengan value yang ada di database user
-        $user = User::where('username', $request->username)->first();
-
-        if (!$user) {
-            return back()->withErrors(['username' => 'Invalid username']);
-        }
+        // Ambil data pengguna yang sedang terautentikasi
+        $user = Auth::user();
 
         // Ambil data produk
         $product = Product::find($request->product_id);
 
         // Buat pesanan baru
         $order = new Order();
-        $order->username = $request->username;
-        $order->user_id = $request->user_id;
+        $order->username = $user->username; // Menyimpan username pengguna yang terautentikasi
+        $order->game_id = $request->game_id;
         $order->product_id = $product->id;
         $order->quantity = $request->quantity;
         $order->payment_method = $request->payment_method;
         $order->total_price = $product->price * $request->quantity;
-        $order->status = 'pending'; // Status default pesanan
+        $order->status = 'pending';
         $order->save();
 
-        // Balek ke halaman konfirmasi atau halaman lain yang diinginkan
+        // Redirect ke halaman konfirmasi
         return redirect()->route('orderConfirmation')->with('success', 'Order placed successfully!');
     }
 
@@ -122,12 +116,12 @@ class OrderController extends Controller
     {
         $orders = Order::latest()->take(5)->get();
         $totalOrders = Order::count(); // Jumlah total pesanan
-        $totalVisitors = Visitor::count(); // Masi error gosa di masukkan
+        $visitors = User::count();
         $totalSales = Order::sum('total_price'); // Jumlah Total Pemasukan
         $tasks = Task::all(); // Misalnya, Anda juga menampilkan ToDoList di dashboard
         $recentOrders = Order::latest()->limit(5)->get(); // Masi error gosa di masukkan
 
-        return view('admin.dashboard', compact('orders', 'totalOrders', 'totalVisitors', 'totalSales', 'tasks', 'recentOrders'), [
+        return view('admin.dashboard', compact('orders', 'totalOrders', 'visitors', 'totalSales', 'tasks', 'recentOrders'), [
             'title' => 'Dashboard',
         ]);
     }

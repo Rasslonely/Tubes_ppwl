@@ -6,23 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
-class Product extends Model
+class Category extends Model
 {
     use HasFactory, Searchable;
-    protected $table = 'products';
+
+    protected $table = 'categories';
     protected $fillable = [
-        'title',
         'category',
-        'package',
-        'price',
+        'image',
     ];
 
     public function toSearchableArray(){
         return [
-            'title' => $this->title,
             'category' => $this->category,
-            'package' => $this->package,
-            'price' => $this->price,
         ];
     }
 }

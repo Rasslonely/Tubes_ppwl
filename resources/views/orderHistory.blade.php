@@ -12,7 +12,7 @@
                         <thead style="color: white">
                             <tr>
                                 <th>Order ID</th>
-                                <th>User ID</th>
+                                <th>Game ID</th>
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Created At</th>
@@ -22,7 +22,7 @@
                             @foreach($orders as $order)
                                 <tr>
                                     <td style="color: white">{{ $order->id }}</td>
-                                    <td style="color: white">{{ $order->user_id }}</td>
+                                    <td style="color: white">{{ $order->game_id }}</td>
                                     <td style="color: white">{{ $order->total_price }}</td>
                                     <td style="color: white">{{ $order->status }}</td>
                                     <td style="color: white">{{ $order->created_at }}</td>

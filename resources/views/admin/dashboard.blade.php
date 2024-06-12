@@ -33,7 +33,7 @@
                 <li>
                     <i class='bx bxs-group'></i>
                     <span class="text">
-                        <h3>{{ $totalVisitors }}</h3>
+                        <h3>{{ $visitors }}</h3>
                         <p>Visitors</p>
                     </span>
                 </li>
@@ -80,7 +80,7 @@
                     <ul class="todo-list">
                         @foreach ($tasks as $task)
                             <li class="{{ $task->completed ? 'completed' : 'not-completed' }}">
-                                <p>{{ $task->task }}</p>
+                                <td>{{ $task->task }}</td>
                                 <div>
                                     <form action="{{ route('tasks.delete', $task->id) }}" method="POST"
                                         style="display:inline;">

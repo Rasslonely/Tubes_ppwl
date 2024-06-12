@@ -10,7 +10,7 @@
                         <div class="start-stream">
                             <div class="col-lg-12">
                                 <div class="heading-section" style="margin-top: auto">
-                                    <h4><em>Available</em> Package for {{ ucfirst($category) }}</h4>
+                                    <h4><em>Available</em> Package for {{($category) }}</h4>
                                 </div>
                                 <div class="row">
                                     @foreach ($products as $product)

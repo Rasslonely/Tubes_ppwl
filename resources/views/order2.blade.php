@@ -28,29 +28,33 @@
                                             <form action="{{ route('checkout') }}" method="POST">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="username" style="color: white">Username</label>
-                                                    <input type="text" class="form-control @error('username') is-invalid @enderror" id="username"
-                                                        name="username" required>
-                                                    @error('username')
+                                                    <label for="game_id" style="color: white">Game ID</label>
+                                                    <input type="text"
+                                                        class="form-control @error('game_id') is-invalid @enderror"
+                                                        id="game_id" name="game_id" required>
+                                                    @error('game_id')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="user_id" style="color: white">User ID</label>
-                                                    <input type="text" class="form-control" id="user_id" name="user_id"
-                                                        required>
-                                                </div>
-                                                <div class="form-group">
                                                     <label for="quantity" style="color: white">Quantity</label>
-                                                    <input type="number" class="form-control" id="quantity"
-                                                        name="quantity" value="1" min="1" required>
+                                                    <input type="number"
+                                                        class="form-control @error('quantity') is-invalid @enderror"
+                                                        id="quantity" name="quantity" value="1" min="1"
+                                                        required>
+                                                    @error('quantity')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="payment_method" style="color: white">Payment Method</label>
-                                                    <select class="form-control" id="payment_method" name="payment_method"
-                                                        required>
+                                                    <select
+                                                        class="form-control @error('payment_method') is-invalid @enderror"
+                                                        id="payment_method" name="payment_method" required>
                                                         <option value="VISA">VISA</option>
                                                         <option value="Indomaret">Indomaret</option>
                                                         <option value="ShopeePay">ShopeePay</option>
@@ -61,6 +65,11 @@
                                                         <option value="QRIS">QRIS</option>
                                                         <option value="Dana">Dana</option>
                                                     </select>
+                                                    @error('payment_method')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
