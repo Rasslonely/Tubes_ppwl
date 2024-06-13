@@ -8,14 +8,6 @@
 
                     <!-- ***** Banner Start ***** -->
                     <div class="main-banner">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <div class="header-text">
-                                    <h6>Welcome To Cyborg</h6>
-                                    <h4><em>Browse</em> Our Popular Games Here</h4>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!-- ***** Banner End ***** -->
 
@@ -29,7 +21,7 @@
                                 <div class="row">
                                     @foreach ($categories as $category)
                                         <div class="col-lg-4 col-sm-6">
-                                            <a href="/order/Nayla Cooking">
+                                            <a href={{ route('order.index', ['category' => $category->category]) }}>
                                                 <div class="item">
                                                     <img src={{ asset('storage/' . $category->image) }} alt="">
                                                     <h4>{{ $category->category }}<br></h4>
@@ -37,7 +29,6 @@
                                             </a>
                                         </div>
                                     @endforeach
-
                                     @if ($categories->isEmpty())
                                         <div class="col-lg-12">
                                             <p>Category not found</p>

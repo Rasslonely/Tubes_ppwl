@@ -11,7 +11,8 @@
                     <table class="table table-striped">
                         <thead style="color: white">
                             <tr>
-                                <th>Order ID</th>
+                                <th>#</th>
+                                <th>Category</th>
                                 <th>Game ID</th>
                                 <th>Total</th>
                                 <th>Status</th>
@@ -21,7 +22,8 @@
                         <tbody>
                             @foreach($orders as $order)
                                 <tr>
-                                    <td style="color: white">{{ $order->id }}</td>
+                                    <td style="color: white">{{ $loop->iteration }}</td>
+                                    <td style="color: white">{{ $order->category }}</td>
                                     <td style="color: white">{{ $order->game_id }}</td>
                                     <td style="color: white">{{ $order->total_price }}</td>
                                     <td style="color: white">{{ $order->status }}</td>

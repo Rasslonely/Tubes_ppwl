@@ -39,10 +39,10 @@
                             <select class="select-container rounded-lg form-control" name="category">
                                 <option disabled {{ old('category', $products->category) ? '' : 'selected' }}>Category
                                 </option>
-                                @foreach (['Nayla Cooking', 'Rass Simulator', 'Robert King', 'Timo Racing', 'Rayza World'] as $category)
-                                    <option value="{{ $category }}"
-                                        {{ old('category', $products->category) == $category ? 'selected' : '' }}>
-                                        {{ $category }}
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->category }}"
+                                        {{ old('category', $products->category) == $category->category ? 'selected' : '' }}>
+                                        {{ $category->category }}
                                     </option>
                                 @endforeach
                             </select>
@@ -65,7 +65,7 @@
                             @enderror
                         </div>
                         <div class="button-add">
-                            <button> Product</button>
+                            <button>Add Product</button>
                         </div>
                     </form>
                     <hr>
@@ -73,54 +73,4 @@
             </div>
         </main>
     </section>
-
-    {{-- <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h1 class="mb-0 font-semibold text-xl text-gray-800 leading-tight">Edit Product</h1>
-                    <hr>
-                    <form action="{{ route('admin.product.update', $products->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="input-container">
-                            <input type="text" name="title" placeholder="Title" class="form-control" value="{{ $products->title }}">
-                            @error('title')
-                                <span class="text-error">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="input-container">
-                            <select class="select-container rounded-lg" name="category" class="form-control">
-                                <option disabled selected class="">Category</option>
-                                <option>Nayla Cooking</option>
-                                <option>Rass Simulator</option>
-                                <option>Robert King</option>
-                                <option>Timo Racing</option>
-                                <option>Rayza World</option>
-                            </select>
-                            @error('category')
-                                <span class="text-error">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="input-container">
-                            <input type="text" name="package" placeholder="Package" class="form-control" value="{{ $products->package }}">
-                            @error('package')
-                                <span class="text-error">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="input-container">
-                            <input type="number" min="10000" max="any" step="10000" name="price"
-                                placeholder="Price" class="form-control" value="{{ $products->price }}">
-                            @error('price')
-                                <span class="text-error">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="button-add">
-                            <button>Edit Product</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 @endsection

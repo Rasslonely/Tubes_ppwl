@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -23,7 +24,8 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        return view('admin.product.create', [
+        $categories = Category::all();
+        return view('admin.product.create', compact('categories'), [
             'title' => 'Product',
         ]);
     }
@@ -48,8 +50,9 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        $categories = Category::all();
         $products = Product::findOrFail($id);
-        return view('admin.product.update', compact('products'), [
+        return view('admin.product.update', compact('products', 'categories'), [
             'title' => 'Product',
         ]);
     }

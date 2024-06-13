@@ -28,35 +28,33 @@
                     <form action="{{ route('admin.product.save') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="input-container">
-                            <input type="text" name="title" placeholder="Title" class="form-control">
+                            <input type="text" name="title" placeholder="Title" class="form-control" value="{{ old('title') }}">
                             @error('title')
-                                <span class="text-error">{{ $message }}</span>
+                                <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="input-container">
-                            <select class="select-container rounded-lg" name="category" class="form-control">
-                                <option disabled selected class="">Category</option>
-                                <option>Nayla Cooking</option>
-                                <option>Rass Simulator</option>
-                                <option>Robert King</option>
-                                <option>Timo Racing</option>
-                                <option>Rayza World</option>
+                            <select class="form-control" name="category">
+                                <option value="">Select Category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->category }}">{{ $category->category }}</option>
+                                @endforeach
                             </select>
                             @error('category')
-                                <span class="text-error">{{ $message }}</span>
+                                <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="input-container">
-                            <input type="text" name="package" placeholder="Package" class="form-control">
+                            <input type="text" name="package" placeholder="Package" class="form-control" value="{{ old('package') }}">
                             @error('package')
-                                <span class="text-error">{{ $message }}</span>
+                                <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="input-container">
                             <input type="number" min="10000" max="any" step="10000" name="price"
-                                placeholder="Price" class="form-control">
+                                placeholder="Price" class="form-control" value="{{ old('price') }}">
                             @error('price')
-                                <span class="text-error">{{ $message }}</span>
+                                <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="button-add">

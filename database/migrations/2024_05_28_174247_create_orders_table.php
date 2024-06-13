@@ -15,12 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('game_id');
             $table->string('username');
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->string('category');
+            $table->unsignedBigInteger('product_id')->nullable();
             $table->integer('quantity');
             $table->string('payment_method');
             $table->decimal('total_price', 10, 2);
             $table->string('status')->default('pending');
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('set null');
         });
     }
 

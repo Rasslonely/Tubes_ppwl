@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\User;
 use App\Models\Task;
 use App\Models\Product;
@@ -31,12 +32,13 @@ class OrderController extends Controller
         ]);
     }
 
-    public function order2()
-    {
-        return view('order2', [
-            'title' => 'Home',
-        ]);
-    }
+    // public function order2()
+    // {
+        
+    //     return view('order2', [
+    //         'title' => 'Home',
+    //     ]);
+    // }
 
     public function update(Request $request, $id)
     {
@@ -79,12 +81,16 @@ class OrderController extends Controller
         // Ambil data pengguna yang sedang terautentikasi
         $user = Auth::user();
 
+        // Ambil data kategori berdasarkan parameter rute
+        $category = Category::all()->firstOrFail();
+
         // Ambil data produk
         $product = Product::find($request->product_id);
 
         // Buat pesanan baru
         $order = new Order();
         $order->username = $user->username; // Menyimpan username pengguna yang terautentikasi
+        $order->category = $category->category;
         $order->game_id = $request->game_id;
         $order->product_id = $product->id;
         $order->quantity = $request->quantity;
@@ -106,8 +112,17 @@ class OrderController extends Controller
 
     public function orderHistory()
     {
-        $orders = Order::all();
-        return view('orderHistory', compact(['orders']), [
+        $orders = Category::all();
+        if (Auth::user()->username == 'admin') {
+            // Jika pengguna adalah admin, ambil semua pesanan
+            $orders = Order::all();
+        } else {
+            // Jika pengguna bukan admin, ambil pesanan yang dimiliki oleh pengguna tersebut
+            $user = Auth::user();
+            $orders = Order::where('id', $user->id)->get();
+        }
+
+        return view('orderHistory', compact('orders'), [
             'title' => 'Orders',
         ]);
     }

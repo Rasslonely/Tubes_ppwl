@@ -22,16 +22,16 @@
                     <form action="{{ route('admin.category.save') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="input-container">
-                            <input type="text" name="category" id="category" placeholder="Category" class="form-control">
+                            <input type="text" name="category" id="category" placeholder="Category" class="form-control" value="{{ old('category') }}">
                             @error('category')
-                                <span class="text-error">{{ $message }}</span>
+                                <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="input-container">
                             <label for="image">Upload Image</label>
                             <input type="file" name="image" id="image" class="form-control-file" accept="image/*">
                             @error('image')
-                                <span class="text-error text-danger">{{ $message }}</span>
+                                <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="button-add">
