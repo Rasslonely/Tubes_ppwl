@@ -51,7 +51,12 @@ class ProductController extends Controller
         if ($products) {
             return redirect(route('admin.product.home'))->with('success', 'Product added successfully.');
         } else {
+<<<<<<< HEAD
             return redirect(route('admin.product.create'))->with('error', 'Failed to add product.');
+=======
+            session()->flash('error', 'Some Problem Occur');
+            return redirect(route('admin.product.create'));
+>>>>>>> 8da9c80b205d704313d638eeded8d19413d9b150
         }
     }
 
@@ -81,7 +86,12 @@ class ProductController extends Controller
         if ($saved) {
             return redirect(route('admin.product.home'))->with('success', 'Product updated successfully.');
         } else {
+<<<<<<< HEAD
             return redirect(route('admin.product.update', $id))->with('error', 'Failed to update product.');
+=======
+            session()->flash('error', 'Some Problem Occur');
+            return redirect(route('admin.product.home'));
+>>>>>>> 8da9c80b205d704313d638eeded8d19413d9b150
         }
     }
 
@@ -93,7 +103,12 @@ class ProductController extends Controller
         if ($deleted) {
             return redirect(route('admin.product.home'))->with('success', 'Product deleted successfully.');
         } else {
+<<<<<<< HEAD
             return redirect(route('admin.product.home'))->with('error', 'Failed to delete product.');
+=======
+            session()->flash('error', 'Some Problem Occur');
+            return redirect(route('admin.product.update'));
+>>>>>>> 8da9c80b205d704313d638eeded8d19413d9b150
         }
     }
 }
