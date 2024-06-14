@@ -25,7 +25,7 @@ class Order extends Model
     {
         return $this->belongsTo(Product::class);
     }
-    
+
     // Relasi ke model User
     public function user()
     {
@@ -35,5 +35,16 @@ class Order extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'status' => $this->status,
+            'created_at' => $this->created_at,
+            'username' => $this->user->username,
+            'game_id' => $this->game_id,
+            'total_price' => $this->total_price,
+        ];
     }
 }

@@ -48,7 +48,7 @@
                             <tr>
                                 <td class="align-middle">{{ $loop->iteration }}</td>
                                 <td class="align-middle">{{ $product->title }}</td>
-                                <td class="align-middle">{{ $product->category }}</td>
+                                <td class="align-middle">{{ $product->category->category }}</td>
                                 <td class="align-middle">{{ $product->package }}</td>
                                 <td class="align-middle">{{ $product->price }}</td>
                                 <td class="align-middle">

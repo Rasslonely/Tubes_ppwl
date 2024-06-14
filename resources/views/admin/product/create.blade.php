@@ -34,10 +34,10 @@
                             @enderror
                         </div>
                         <div class="input-container">
-                            <select class="form-control" name="category">
+                            <select class="form-control" name="category_id">
                                 <option value="">Select Category</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->category }}">{{ $category->category }}</option>
+                                    <option value="{{ $category->id }}">{{ $category->category }}</option>
                                 @endforeach
                             </select>
                             @error('category')

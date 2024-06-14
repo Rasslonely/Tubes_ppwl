@@ -22,8 +22,6 @@ class Task extends Model
     public function toSearchableArray()
     {
         return [
-            'id' => $this->id,
-            'tanggal' => $this->tanggal,
             'task' => $this->task,
         ];
     }

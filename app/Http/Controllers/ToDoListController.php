@@ -16,8 +16,7 @@ class ToDoListController extends Controller
             $tasks = Task::orderBy('id')->get();
         }
 
-        return view('admin.dashboard', [
-            'tasks' => $tasks,
+        return view('admin.dashboard', compact(['tasks']), [
             'title' => 'Dashboard'
         ]);
     }

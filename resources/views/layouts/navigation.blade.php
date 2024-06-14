@@ -66,7 +66,7 @@
         <input type="checkbox" id="switch-mode" hidden>
         <label for="switch-mode" class="switch-mode"></label>
         <a href="{{ route('admin.dashboard') }}" class="profile">
-            <img src="../../assets/images/logo-cyborg.png">
+            <img src="../../../assets/images/logo-cyborg.png">
         </a>
     </nav>
     <!-- NAVBAR -->

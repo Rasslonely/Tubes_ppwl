@@ -36,19 +36,18 @@
                             @enderror
                         </div>
                         <div class="input-container">
-                            <select class="select-container rounded-lg form-control" name="category">
-                                <option disabled {{ old('category', $products->category) ? '' : 'selected' }}>Category
-                                </option>
+                            <select class="select-container rounded-lg form-control" name="category_id">
+                                <option disabled {{ old('category_id') ? '' : 'selected' }}>Category</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->category }}"
-                                        {{ old('category', $products->category) == $category->category ? 'selected' : '' }}>
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id', $products->category_id) == $category->id ? 'selected' : '' }}>
                                         {{ $category->category }}
                                     </option>
                                 @endforeach
-                            </select>
-                            @error('category')
-                                <span class="text-error">{{ $message }}</span>
-                            @enderror
+                                </select>
+                                @error('category')
+                                    <span class="text-error">{{ $message }}</span>
+                                @enderror
                         </div>
                         <div class="input-container">
                             <input type="text" name="package" placeholder="Package" class="form-control"
@@ -65,7 +64,7 @@
                             @enderror
                         </div>
                         <div class="button-add">
-                            <button>Add Product</button>
+                            <button>Update Product</button>
                         </div>
                     </form>
                     <hr>

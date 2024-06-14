@@ -14,7 +14,7 @@ class Product extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'title',
-        'category',
+        'category_id',
         'package',
         'price',
     ];
@@ -22,14 +22,18 @@ class Product extends Model
     public function toSearchableArray(){
         return [
             'title' => $this->title,
-            'category' => $this->category,
             'package' => $this->package,
             'price' => $this->price,
         ];
     }
 
-    public function orders()
+    public function order()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

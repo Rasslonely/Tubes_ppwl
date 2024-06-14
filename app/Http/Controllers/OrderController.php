@@ -14,31 +14,23 @@ class OrderController extends Controller
 {
     public function index($category)
     {
-        // Ambil satu produk per kategori
-        $products = Product::where('category', $category)->get();
+        // Ambil kategori berdasarkan nama kategori
+        $categoryModel = Category::where('category', $category)->firstOrFail();
+
+        // Ambil produk berdasarkan kategori menggunakan relasi
+        $products = $categoryModel->products;
 
         // Jika tidak ada produk yang ditemukan dalam kategori yang dipilih
         if (empty($products)) {
-            return view('order', [
-                'category' => $category,
+            return view('order', compact('category'), [
                 'products' => [],
             ]);
         }
 
-        return view('order', [
+        return view('order', compact('products', 'category'), [
             'title' => 'Home',
-            'category' => $category,
-            'products' => $products,
         ]);
     }
-
-    // public function order2()
-    // {
-
-    //     return view('order2', [
-    //         'title' => 'Home',
-    //     ]);
-    // }
 
     public function update(Request $request, $id)
     {
@@ -81,9 +73,6 @@ class OrderController extends Controller
         // Ambil data pengguna yang sedang terautentikasi
         $user = Auth::user();
 
-        // Ambil data kategori berdasarkan parameter rute
-        // $category = Category::all()->firstOrFail();
-
         // Ambil data produk
         $product = Product::find($request->product_id);
 
@@ -96,7 +85,7 @@ class OrderController extends Controller
         $order->payment_method = $request->payment_method;
         $order->total_price = $product->price * $request->quantity;
         $order->status = 'pending';
-        $order->category = $product->category; // Ambil kategori dari produk
+        $order->category = $product->category->category; // Ambil kategori dari produk
         $order->save();
 
         // Redirect ke halaman konfirmasi
@@ -114,23 +103,25 @@ class OrderController extends Controller
     {
         $orders = Category::all();
         if (Auth::user()->is_admin) {
-            // Jika pengguna adalah admin, ambil semua pesanan
-            $orders = Order::all();
+            // Jika pengguna adalah admin, ambil semua pesanan dengan kategori
+            $orders = Order::with('category')->get();
         } else {
             // Jika pengguna bukan admin, ambil pesanan yang dimiliki oleh pengguna tersebut
             $user = Auth::user();
-            $orders = Order::where('id', $user->id)->get();
+            $orders = Order::where('id', $user->id)->with('category')->get();
         }
-
+    
         // Loop melalui setiap pesanan dan periksa status produk terkait
         foreach ($orders as $order) {
-            $product = Product::find($order->product_id);
-
             // Jika produk tidak ditemukan, ubah status pesanan menjadi "cancelled"
-            if (!$product) {
-                $order->status = 'cancelled';
+            if ($order->product) {
+            // Produk masih ada, periksa status pesanan
+            if ($order->status != 'Success') {
+                // Jika status bukan 'Success', ubah status menjadi 'cancelled'
+                $order->status = 'pending';
                 $order->save();
             }
+        }
         }
 
         return view('orderHistory', compact('orders'), [
@@ -150,5 +141,20 @@ class OrderController extends Controller
         return view('admin.dashboard', compact('orders', 'totalOrders', 'visitors', 'totalSales', 'tasks', 'recentOrders'), [
             'title' => 'Dashboard',
         ]);
+    }
+
+    public function markAsDone($id)
+    {
+        // Cari pesanan berdasarkan ID
+        $order = Order::findOrFail($id);
+
+        // Ubah status pesanan menjadi "Success"
+        $order->status = 'Success';
+
+        // Simpan perubahan
+        $order->save();
+
+        // Redirect kembali ke dashboard atau halaman yang sesuai
+        return redirect()->route('admin.dashboard')->with('success', 'Order status updated successfully.');
     }
 }

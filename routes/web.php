@@ -26,6 +26,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
     Route::get('/orderConfirmation', [OrderController::class, 'confirmation'])->name('orderConfirmation');
     Route::get('/orderHistory', [OrderController::class, 'orderHistory'])->name('order.orderHistory');
+    Route::put('/order/{id}/done', [OrderController::class, 'markAsDone'])->name('order.done');
+
 });
 
 // Route::get('/', [PostingController::class, 'utama']);

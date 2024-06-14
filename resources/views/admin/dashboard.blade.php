@@ -27,7 +27,7 @@
                     <span class="text">
                         <!-- Data diambil dari database dengan pihak tengah OrderController-->
                         <h3>{{ $totalOrders }}</h3>
-                            <p>Total Order</p>
+                        <p>Total Order</p>
                     </span>
                 </li>
                 <li>
@@ -54,24 +54,42 @@
                         <thead>
                             <tr>
                                 <th>User</th>
-                                <th>Date Order</th>
+                                <th>Category</th>
+                                <th>Game ID</th>
+                                <th>Total</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
-                                    <td>
+                                    <td style="width: 100px">
                                         <img src="../../assets/images/user.png">
-                                        <p>{{ $order->username ?? 'Unknown User' }}</p>
+                                        {{ $order->username }}
                                     </td>
-                                    <td>{{ $order->created_at->format('d-m-Y') }}</td>
-                                    <td><span class="status {{ $order->status }}" style="background-color:rgb(255, 82, 82)">{{ ucfirst($order->status) }}</span></td>
+                                    <td>{{ $order->category }}</td>
+                                    <td>{{ $order->game_id }}</td>
+                                    <td>{{ $order->total_price }}</td>
+                                    <td><span class="status {{ $order->status }}"
+                                            style="background-color:rgb(255, 82, 82)">{{ ucfirst($order->status) }}</span>
+                                    </td>
+                                    <td>
+                                        @if ($order->status !== 'success')
+                                            <form action="{{ route('order.done', $order->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn btn-secondary" style="cursor: pointer; background-color: rgb(72, 203, 72)">Done</button>
+                                            </form>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="table-data">
                 <div class="todo">
                     <div class="head">
                         <h3>ToDoList</h3>
@@ -79,7 +97,7 @@
                     </div>
                     <ul class="todo-list">
                         @foreach ($tasks as $task)
-                            <li class="{{ $task->completed ? 'completed' : 'not-completed' }}">
+                            <li class="not-completed">
                                 <td>{{ $task->task }}</td>
                                 <div>
                                     <form action="{{ route('tasks.delete', $task->id) }}" method="POST"
