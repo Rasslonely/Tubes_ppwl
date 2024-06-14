@@ -65,7 +65,7 @@
                             @enderror
                         </div>
                         <div class="button-add">
-                            <button>Add Product</button>
+                            <button>Update Product</button>
                         </div>
                     </form>
                     <hr>
