@@ -110,20 +110,27 @@ class OrderController extends Controller
             $user = Auth::user();
             $orders = Order::where('id', $user->id)->with('category')->get();
         }
-    
+
         // Loop melalui setiap pesanan dan periksa status produk terkait
         foreach ($orders as $order) {
-            // Jika produk tidak ditemukan, ubah status pesanan menjadi "cancelled"
-            if ($order->product) {
-            // Produk masih ada, periksa status pesanan
-            if ($order->status != 'Success') {
-                // Jika status bukan 'Success', ubah status menjadi 'cancelled'
+            // Retrieve the product associated with the order
+            $product = Product::find($order->product_id);
+        
+            // Check if product exists
+            if (!$product) {
+                // If product does not exist, update order status to 'cancelled'
+                $order->status = 'cancelled';
+            } else if ($order->status !== 'Success') {
+                // If product exists and order status is not 'Success', update status to 'pending'
                 $order->status = 'pending';
-                $order->save();
             }
+        
+            // Save the updated order status
+            $order->save();
         }
-        }
-
+        
+        
+        $order->save();
         return view('orderHistory', compact('orders'), [
             'title' => 'Orders',
         ]);
@@ -134,7 +141,16 @@ class OrderController extends Controller
         $orders = Order::latest()->take(5)->get();
         $totalOrders = Order::count(); // Jumlah total pesanan
         $visitors = User::count();
-        $totalSales = Order::sum('total_price'); // Jumlah Total Pemasukan
+        $tempDuitCancelled = Order::sum('total_price') - Order::sum('total_price');
+        foreach ($orders as $order) {
+            $product = Product::find($order->product_id);
+            // Jika status produk == 'cancelled', tambahkan total harganya di variabel tempDuit
+            if ($order->status == 'cancelled') {
+                $tempDuitCancelled += $order->total_price;
+            }
+        }
+        $totalSales = Order::sum('total_price') - $tempDuitCancelled; // Jumlah Total Pemasukan (Total semua produk - yang cancelled)
+        // $totalSales = Order::sum('total_price'); // Jumlah Total Pemasukan
         $tasks = Task::all(); // Misalnya, Anda juga menampilkan ToDoList di dashboard
         $recentOrders = Order::latest()->limit(5)->get(); // Masi error gosa di masukkan
 
