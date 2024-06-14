@@ -43,7 +43,7 @@ class ProductController extends Controller
             session()->flash('success', 'Product Add Successfully');
             return redirect(route('admin.product.home'));
         } else {
-            session()->flash('error', 'Some Problem Occure');
+            session()->flash('error', 'Some Problem Occur');
             return redirect(route('admin.product.create'));
         }
     }
@@ -64,7 +64,7 @@ class ProductController extends Controller
             session()->flash('success', 'Product Delete Successfully');
             return redirect(route('admin.product.home'));
         } else {
-            session()->flash('error', 'Some Problem Occure');
+            session()->flash('error', 'Some Problem Occur');
             return redirect(route('admin.product.home'));
         }
     }
@@ -86,7 +86,7 @@ class ProductController extends Controller
             session()->flash('success', 'Product Update Successfully');
             return redirect(route('admin.product.home'));
         } else {
-            session()->flash('error', 'Some Problem Occure');
+            session()->flash('error', 'Some Problem Occur');
             return redirect(route('admin.product.update'));
         }
     }
