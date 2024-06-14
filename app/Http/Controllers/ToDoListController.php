@@ -10,9 +10,10 @@ class ToDoListController extends Controller
     public function index(Request $request)
     {
         if ($request->has('search')) {
-            $tasks = Task::search($request->search)->get();
+            $tasks = Task::search($request->search)->orderBy('id')->get();
         } else {
             $tasks = Task::all();
+            $tasks = Task::orderBy('id')->get();
         }
 
         return view('admin.dashboard', [

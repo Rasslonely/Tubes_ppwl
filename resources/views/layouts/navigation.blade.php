@@ -5,13 +5,13 @@
     </a>
     <ul class="side-menu top">
         <li
-            class="{{ Auth::user()->username == 'admin' ? (request()->routeIs('admin.dashboard') ? 'active' : '') : (request()->routeIs('home') ? 'active' : '') }}">
-            <a href="{{ Auth::user()->username == 'admin' ? route('admin.dashboard') : route('home') }}">
+            class="{{ Auth::user()->is_admin ? (request()->routeIs('admin.dashboard') ? 'active' : '') : (request()->routeIs('home') ? 'active' : '') }}">
+            <a href="{{ Auth::user()->is_admin ? route('admin.dashboard') : route('home') }}">
                 <i class='bx bxs-dashboard'></i>
                 <span class="text">Dashboard</span>
             </a>
         </li>
-        @if (Auth::user()->username == 'admin')
+        @if (Auth::user()->is_admin)
             <li class="{{ request()->routeIs('admin.product.home', 'admin.product.create', 'admin.product.edit') ? 'active' : '' }}">
                 <a href="{{ url('/admin/product/home') }}">
                     <i class='bx bxs-shopping-bag-alt'></i>

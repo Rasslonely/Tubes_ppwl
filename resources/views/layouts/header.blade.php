@@ -14,7 +14,7 @@
 
             @if (Route::has('login'))
                 @auth
-                    @if (Auth::user()->username == 'admin')
+                    @if (Auth::user()->is_admin)
                         <li>
                             <a href="{{ route('admin.dashboard') }}"
                                 class="{{ $title === 'Dashboard' ? 'text-warning text-decoration-underline' : '' }} bi bi-layout-text-window">

@@ -56,4 +56,9 @@ class User extends Authenticatable //implements MustVerifyEmail
             'email' => $this->email,
         ];
     }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 }

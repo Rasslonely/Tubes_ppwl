@@ -17,7 +17,6 @@ class Task extends Model
     protected $fillable = [
         'tanggal',
         'task',
-        'completed'
     ];
 
     public function toSearchableArray()
@@ -26,7 +25,6 @@ class Task extends Model
             'id' => $this->id,
             'tanggal' => $this->tanggal,
             'task' => $this->task,
-            'completed' => $this->completed,
         ];
     }
 }

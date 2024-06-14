@@ -66,7 +66,7 @@
                                         <p>{{ $order->username ?? 'Unknown User' }}</p>
                                     </td>
                                     <td>{{ $order->created_at->format('d-m-Y') }}</td>
-                                    <td><span class="status {{ $order->status }}">{{ ucfirst($order->status) }}</span></td>
+                                    <td><span class="status {{ $order->status }}" style="background-color:rgb(255, 82, 82)">{{ ucfirst($order->status) }}</span></td>
                                 </tr>
                             @endforeach
                         </tbody>

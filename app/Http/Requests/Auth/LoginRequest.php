@@ -40,52 +40,38 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function authenticate(): void
+    public function authenticate(): bool
     {
-        // $data = request()->all();
         $this->ensureIsNotRateLimited();
 
-        // if (! Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
-        //     RateLimiter::hit($this->throttleKey());
+        // Cari user berdasarkan email atau username
+        $user = User::where('username', $this->username)
+            ->orWhere('email', $this->username)
+            ->first();
 
-        //     throw ValidationException::withMessages([
-        //         'username' => trans('auth.failed'),
-        //     ]);
-        // }
-
-        $user = User::where('username', $this->username)->orWhere('email', $this->username)->first();
-
+        // Jika user tidak ditemukan atau password tidak cocok
         if (!$user || !Hash::check($this->password, $user->password)) {
             throw ValidationException::withMessages([
                 'username' => trans('auth.failed'),
             ]);
-            
         }
 
-        // if(isset($data['remember'])&&!empty($data['remember'])){
-        //     setcookie("username", $data['username'], time()+3600);
-        //     setcookie("password", $data['password'], time()+3600);
-        // }else{
-        //     set("username","");
-        //     set("password","");
-        // }
-        
-        // if ($this->filled('remember')) {
-        //     Auth::login($user, true);
-        // } else {
-        //     Auth::login($user);
-        // }
-        
+        // Simpan cookie jika remember me diaktifkan
         if (request()->has('remember')) {
-            Cookie::queue('username', $this->username, 1440);
-            Cookie::queue('password', $this->password, 1440);
+            Cookie::queue('username', $this->username, 1440); // 1440 menit (1 hari)
+            Cookie::queue('password', $this->password, 1440); // 1440 menit (1 hari)
         }
-        
+
+        // Lakukan login pengguna
         Auth::login($user, $this->boolean('remember'));
 
-
+        // Bersihkan rate limiter
         RateLimiter::clear($this->throttleKey());
+
+        // Kembalikan true karena autentikasi berhasil
+        return true;
     }
+
 
     /**
      * Ensure the login request is not rate limited.

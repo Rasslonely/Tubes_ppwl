@@ -34,7 +34,7 @@ class OrderController extends Controller
 
     // public function order2()
     // {
-        
+
     //     return view('order2', [
     //         'title' => 'Home',
     //     ]);
@@ -82,7 +82,7 @@ class OrderController extends Controller
         $user = Auth::user();
 
         // Ambil data kategori berdasarkan parameter rute
-        $category = Category::all()->firstOrFail();
+        // $category = Category::all()->firstOrFail();
 
         // Ambil data produk
         $product = Product::find($request->product_id);
@@ -90,13 +90,13 @@ class OrderController extends Controller
         // Buat pesanan baru
         $order = new Order();
         $order->username = $user->username; // Menyimpan username pengguna yang terautentikasi
-        $order->category = $category->category;
         $order->game_id = $request->game_id;
         $order->product_id = $product->id;
         $order->quantity = $request->quantity;
         $order->payment_method = $request->payment_method;
         $order->total_price = $product->price * $request->quantity;
         $order->status = 'pending';
+        $order->category = $product->category; // Ambil kategori dari produk
         $order->save();
 
         // Redirect ke halaman konfirmasi
@@ -113,13 +113,24 @@ class OrderController extends Controller
     public function orderHistory()
     {
         $orders = Category::all();
-        if (Auth::user()->username == 'admin') {
+        if (Auth::user()->is_admin) {
             // Jika pengguna adalah admin, ambil semua pesanan
             $orders = Order::all();
         } else {
             // Jika pengguna bukan admin, ambil pesanan yang dimiliki oleh pengguna tersebut
             $user = Auth::user();
             $orders = Order::where('id', $user->id)->get();
+        }
+
+        // Loop melalui setiap pesanan dan periksa status produk terkait
+        foreach ($orders as $order) {
+            $product = Product::find($order->product_id);
+
+            // Jika produk tidak ditemukan, ubah status pesanan menjadi "cancelled"
+            if (!$product) {
+                $order->status = 'cancelled';
+                $order->save();
+            }
         }
 
         return view('orderHistory', compact('orders'), [
